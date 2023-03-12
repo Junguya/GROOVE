@@ -106,24 +106,13 @@ public class Relative_Music extends Fragment {
 
                         try {
                             JSONObject json = new JSONObject(response);
-                            JSONArray song_list2 = json.getJSONArray("song_list");
-                            JSONArray stitle_list2 = json.getJSONArray("stitle_list");
-                            JSONArray salbum_list2 = json.getJSONArray("salbum_list");
-
-                            if(!song_list.isEmpty()){
-                                song_list.clear();
-                                stitle_list.clear();
-                                salbum_list.clear();
-                            }
-                            for(int i=0; i<song_list2.length(); i++){
-                                song_list.add(song_list2.getString(i));
-                                stitle_list.add(stitle_list2.getString(i));
-                                salbum_list.add(salbum_list2.getString(i));
-                            }
+                            JSONArray song_list = json.getJSONArray("song_list");
+                            JSONArray stitle_list = json.getJSONArray("stitle_list");
+                            JSONArray salbum_list = json.getJSONArray("salbum_list");
 
                             dataArray = new ArrayList<>();
-                            for (int i = 0; i < stitle_list.size(); i++) {
-                                dataArray.add(new Main_Item(stitle_list.get(i), getResources().getIdentifier("album_"+ salbum_list.get(i), "drawable", getActivity().getPackageName()), View_Type_Code.ViewType.FIRST_CONTENT));
+                            for (int i = 0; i < stitle_list.length(); i++) {
+                                dataArray.add(new Main_Item(stitle_list.getString(i), getResources().getIdentifier("album_"+ salbum_list.get(i), "drawable", getActivity().getPackageName()), View_Type_Code.ViewType.FIRST_CONTENT));
                             }
                             pl_relative = rootView.findViewById(R.id.pl_relative);
                             adapter = new MyMusic_RecyclerView_Adapter(dataArray);
@@ -136,7 +125,7 @@ public class Relative_Music extends Fragment {
                                 public void onItemClick(View view, int position) throws JSONException {
 
                                     Intent intent = new Intent(getActivity(), PlayerActivity.class);
-                                    intent.putExtra("song_id",song_list.get(position));
+                                    intent.putExtra("song_id",song_list.getString(position));
                                     startActivity(intent);
                                 }
                                 @Override
