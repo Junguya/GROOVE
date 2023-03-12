@@ -16,11 +16,14 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_groove"
+        android:roundIcon="@mipmap/ic_groove_round"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.GROOVE"
         android:usesCleartextTraffic="true"
+        android:hardwareAccelerated="false"
+        android:largeHeap="true"
         tools:targetApi="31">
         <activity
             android:name=".activity.SearchList"
